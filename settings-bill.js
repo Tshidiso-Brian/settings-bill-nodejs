@@ -1,5 +1,6 @@
 module.exports = function SettingsBill() {
 
+    var textColor = ""
     let smsCost;
     let callCost;
     let warningLevel;
@@ -111,6 +112,31 @@ module.exports = function SettingsBill() {
         return total >= criticalLevel;
     }
 
+    function colorChange(){
+        const total = grandTotal();
+        
+       // if (total <= criticalLevel){
+
+        if (total >=criticalLevel){
+            textColor = "danger"
+        
+
+            // totalSettings.classList.remove("warning");
+            // totalSettings.classList.add("danger")
+        }
+        else if (total>= warningLevel && total < criticalLevel){
+            // totalSettings.classList.remove("warning");
+            // totalSettings.classList.add("danger")
+            textColor = "warning"
+       }
+  //  }
+
+    }
+    function getTextColour(){
+     return textColor
+    }
+    
+
     return {
         setSettings,
         getSettings,
@@ -119,6 +145,8 @@ module.exports = function SettingsBill() {
         actionsFor,
         totals,
         hasReachedWarningLevel,
-        hasReachedCriticalLevel
+        hasReachedCriticalLevel,
+        colorChange,
+        getTextColour
     }
 }
